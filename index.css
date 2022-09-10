@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)) , url("https://images.pexels.com/photos/8249248/pexels-photo-8249248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") no-repeat center center/cover;
+}
+#parent-container{
+    margin-top: 30px;
+}
+.page-title {
+    font-size: 3rem;
+    font-weight: 500;
+}
+input{
+    width: 70%;
+}
+.main-heading{
+    text-align: center;
+}
+.registration-form{
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+}
+.button-cont{
+    text-align: center;
+}
