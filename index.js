@@ -1,95 +1,138 @@
-function resetFields () {
-	document.getElementById('registration-form').reset()
+ function isValidate(){
+    let firstName = document.getElementById("firstname").value;
+    let lastName = document.getElementById("lastname").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let Batch = document.getElementById("Batch").value;
+    let module = document.getElementById("module").value;
+    let invalidCheck = document.getElementById("invalidCheck").checked;
 
-	document.getElementById('firstValid').style.display = 'none'
-	document.getElementById('lastValid').style.display = 'none'
-	document.getElementById('emailValid').style.display = 'none'
-	document.getElementById('cityValid').style.display = 'none'
-	document.getElementById('stateValid').style.display = 'none'
-	document.getElementById('zipValid').style.display = 'none'
-	document.getElementById('tandcChecked').style.display = 'none'
+    if(firstName == '' || firstName.length < 3){
+        document.getElementById("firstNameInvalid").style.display = "block"
+        document.getElementById("firstNameValid").style.display = "none"
+    }
+    else{
+        document.getElementById("firstNameValid").style.display = "block";
+        document.getElementById("firstNameInvalid").style.display = "none";
+    }
+    if(lastName == '' || lastName.length < 3){
+        document.getElementById("lastNameInvalid").style.display = "block"
+        document.getElementById("lastNameValid").style.display = "none"
+    }
+    else{
+        document.getElementById("lastNameValid").style.display = "block";
+        document.getElementById("lastNameInvalid").style.display = "none";
+    }
+    if(email == '' || !email.includes('@') || !email.includes('.') ||email.startsWith('@') || email.indexOf("@")> email.indexOf(".") || email.indexOf(".") > (email.length-3)){
+        document.getElementById("emailInvalid").style.display = "block"
+        document.getElementById("emailValid").style.display = "none"
+    }
+    else{
+        document.getElementById("emailValid").style.display = "block";
+        document.getElementById("emailInvalid").style.display = "none";
+    }
+    if(phone  == ''|| phone.length != 10 || Number(phone[0]) <6 || isNaN(phone)  ){
+        document.getElementById("phoneInvalid").style.display = "block"
+        document.getElementById("phoneValid").style.display = "none"
+    }
+    else{
+        document.getElementById("phoneValid").style.display = "block";
+        document.getElementById("phoneInvalid").style.display = "none";
+    }
+    if(Batch == ''){
+        document.getElementById("BatchInvalid").style.display = "block"
+        document.getElementById("BatchValid").style.display = "none"
+
+    }
+    else{
+        document.getElementById("BatchValid").style.display = "block";
+        document.getElementById("BatchInvalid").style.display = "none";
+    }
+    if(module  == '' ){
+        document.getElementById("moduleInvalid").style.display = "block"
+        document.getElementById("moduleValid").style.display = "none"
+    }
+    else{
+        document.getElementById("moduleValid").style.display = "block";
+        document.getElementById("moduleInvalid").style.display = "none";
+    }
+    if(  invalidCheck ==false  ){
+        key=0;
+        document.getElementById("tncCondition").style.display = "block";
+    }
+    else{
+        document.getElementById("tncCondition").style.display = "none";
+    }
+    
+
+    if( !(firstName == '' || firstName.length < 3
+       || lastName == '' || lastName.length < 3
+       || email == '' || !email.includes('@') || !email.includes('.') ||email.startsWith('@') || email.indexOf("@")> email.indexOf(".") || email.indexOf(".") > (email.length-3)
+       || phone  == ''|| phone.length != 10 || Number(phone[0]) <6 || isNaN(phone) 
+       || Batch == ''
+       || module  == ''
+       || invalidCheck ==false)
+    ){
+        alert("Your details have been saved successfully!");
+        resetform();
+    }
+    
 }
-function validate() {
-  let firstName = document.getElementById("firstName").value;
-  let lastName = document.getElementById("lastName").value;
-  let email = document.getElementById("email").value;
-  let city = document.getElementById("city").value;
-  let state = document.getElementById("state").value;
-  let zip = document.getElementById("zip").value;
-  let tandc = document.getElementById("tandc").checked;
-
-  let error = false
-
-    if (firstName.length >= 2) {
-      document.getElementById("firstValid").style.display = "block";
-      document.getElementById("firstInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("firstInvalid").style.display = "block";
-      document.getElementById("firstValid").style.display = "none";
+function isValidFirstName(){
+    let firstName = document.getElementById("firstname").value;
+    if(firstName == '' || firstName.includes(" ") || firstName.length < 3){
+        document.getElementById("firstNameInvalid").style.display = "block";
     }
-
-    if (lastName.length >= 2) {
-      document.getElementById("lastValid").style.display = "block";
-      document.getElementById("lastInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("lastInvalid").style.display = "block";
-      document.getElementById("lastValid").style.display = "none";
+    else{
+        document.getElementById("firstNameInvalid").style.display = "none";
     }
-
-    if (
-      email.includes("@") &&
-      email.includes(".") &&
-      email.indexOf("@") > 0 &&
-      email.substr(email.lastIndexOf('.') + 1).length >= 2
-    ) {
-      document.getElementById("emailValid").style.display = "block";
-      document.getElementById("emailInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("emailInvalid").style.display = "block";
-      document.getElementById("emailValid").style.display = "none";
+}
+function isValidLastName(){
+    let lastName = document.getElementById("lastname").value;
+    if(lastName == '' || lastName.includes(" ") || lastName.length < 3){
+        document.getElementById("lastNameInvalid").style.display = "block";
     }
-
-    if (city.length >= 3) {
-      document.getElementById("cityValid").style.display = "block";
-      document.getElementById("cityInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("cityInvalid").style.display = "block";
-      document.getElementById("cityValid").style.display = "none";
+    else{
+        document.getElementById("lastNameInvalid").style.display = "none";
     }
-
-    if (state != "None") {
-      document.getElementById("stateValid").style.display = "block";
-      document.getElementById("stateInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("stateInvalid").style.display = "block";
-      document.getElementById("stateValid").style.display = "none";
+}
+function isValidMail(){
+    let email = document.getElementById("email").value;
+    if(email == '' || !email.includes('@') || !email.includes('.') ||email.startsWith('@') || email.indexOf("@")> email.indexOf(".")  || email.indexOf(".") > (email.length-3)){
+        document.getElementById("emailInvalid").style.display = "block";
     }
-
-    let numberZip = parseInt(zip);
-    // isNaN -> Will return true if value is NaN, !isNaN -> Will return true if value is a valid number
-    if (!isNaN(numberZip) && numberZip > 100000 && numberZip <= 999999) {
-      document.getElementById("zipValid").style.display = "block";
-      document.getElementById("zipInvalid").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("zipInvalid").style.display = "block";
-      document.getElementById("zipValid").style.display = "none";
+    else{
+        document.getElementById("emailInvalid").style.display = "none";
     }
-
-    if (tandc) {
-      document.getElementById("tandcChecked").style.display = "none";
-    } else {
-      error = true
-      document.getElementById("tandcChecked").style.display = "block";
+}
+function isValidPhone(){
+    let phone = document.getElementById("phone").value;
+    if(phone  == ''|| phone.length != 10 || Number(phone[0]) <6 || isNaN(phone)){
+        document.getElementById("phoneInvalid").style.display = "block";
     }
-
-    if(!error) {
-      alert ('Your details have been saved successfully!')
-      resetFields()
+    else{
+        document.getElementById("phoneInvalid").style.display = "none";
     }
+}
+function isSelected1(){
+    let val = document.getElementById("Batch");
+    let Batch = val.options[select.selectedIndex].value
+    if(Batch== ""){
+        document.getElementById("BatchInvalid").style.display = "block";
+    }else{
+        document.getElementById("BatchInvalid").style.display = "none";
+    }
+}
+function isSelected2(){
+    let val = document.getElementById("module");
+    let module = val.options[select.selectedIndex].value
+    if(module== ""){
+        document.getElementById("moduleInvalid").style.display = "block";
+    }
+    else{
+        document.getElementById("moduleInvalid").style.display = "none";
+    }
+}
+function resetform() {
+    document.getElementById("myForm").reset();
 }
